@@ -8,7 +8,7 @@ import pgzrun
 TITLE = "Roguelike"
 WIDTH = 640
 HEIGHT = 480
-CELL_SIZE = 60
+CELL_SIZE = 64
 
 # === ESTADO DO JOGO ===
 game_started = False
@@ -21,7 +21,7 @@ class Hero:
         self.grid_y = y
         self.x = x * CELL_SIZE
         self.y = y * CELL_SIZE
-        self.image_idle = ["garfield"]
+        self.image_idle = ["player"]
         self.image_walk = ["player", "player"]
         self.frame = 0
         self.sprite = Actor(self.image_idle[0], (self.x, self.y))
@@ -57,7 +57,8 @@ class Hero:
             self.grid_y = new_y
             self.move_target = (new_x * CELL_SIZE, new_y * CELL_SIZE)
             self.moving = True
-
+        
+# === Enemy ===
 class Enemy:
     def __init__(self, x, y):
         self.grid_x = x
@@ -83,7 +84,6 @@ class Enemy:
             distance = abs(dx) + abs(dy)
 
             if distance <= 4:
-                # Segue o herói
                 step_x = 0
                 step_y = 0
                 if abs(dx) > abs(dy):
@@ -92,11 +92,10 @@ class Enemy:
                     step_y = 1 if dy > 0 else -1
                 self.try_move(step_x, step_y)
             else:
-                # Movimento aleatório
                 dir_x, dir_y = random.choice([(1,0),(-1,0),(0,1),(0,-1)])
                 self.try_move(dir_x, dir_y)
 
-            self.timer = 30  # controla a frequência de movimento
+            self.timer = 30
         else:
             self.timer -= 1
 
@@ -120,14 +119,12 @@ class Enemy:
         new_y = self.grid_y + dy
 
         if not (0 <= new_x < 10 and 0 <= new_y < 8):
-            return  # fora do mapa
+            return
 
-        # Verifica se outro inimigo já está na célula
         for other in enemies:
             if other is not self and other.grid_x == new_x and other.grid_y == new_y:
-                return  # célula ocupada
+                return 
 
-        # Move normalmente
         self.grid_x = new_x
         self.grid_y = new_y
         self.move_target = (new_x * CELL_SIZE, new_y * CELL_SIZE)
@@ -148,7 +145,7 @@ def draw():
     if not game_started:
         draw_menu()
     else:
-        screen.fill((30, 30, 30)) # type: ignore
+        screen.fill((180, 160, 255)) # type: ignore
         hero.draw()
         for e in enemies:
             e.draw()
@@ -185,13 +182,13 @@ def update():
 def on_key_down(key):
     if not game_started:
         return
-    if key.name == "UP":
+    if key.name == "UP" or key.name == "W":
         hero.move(0, -1)
-    elif key.name == "DOWN":
+    elif key.name == "DOWN" or key.name == "S":
         hero.move(0, 1)
-    elif key.name == "LEFT":
+    elif key.name == "LEFT" or key.name == "A":
         hero.move(-1, 0)
-    elif key.name == "RIGHT":
+    elif key.name == "RIGHT" or key.name == "D":
         hero.move(1, 0)
 
 pgzrun.go()
