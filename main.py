@@ -2,7 +2,6 @@ import random
 import math
 from pygame import Rect
 from pgzero.actor import Actor
-from pgzero.loaders import sounds
 import pgzrun
 
 TITLE = "Roguelike"
