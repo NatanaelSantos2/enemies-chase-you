@@ -23,6 +23,6 @@ Este é um pequeno jogo no estilo **roguelike**, desenvolvido com as bibliotecas
 - PyGame (instale com `pip install pygame`)
 
 ## ▶️ Como Rodar
-
+Cole no CMD
 ```bash
 pgzrun main.py
