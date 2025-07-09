@@ -9,7 +9,6 @@ WIDTH = 640
 HEIGHT = 480
 CELL_SIZE = 64
 
-# === ESTADO DO JOGO ===
 game_started = False
 sound_on = True
 
@@ -20,8 +19,8 @@ class Hero:
         self.grid_y = y
         self.x = x * CELL_SIZE
         self.y = y * CELL_SIZE
-        self.image_idle = ["player"]
-        self.image_walk = ["player", "player"]
+        self.image_idle = ["idle1", "idle2", "idle3", "idle4", "idle5", "idle6", "idle7", "idle8"]
+        self.image_walk = ["run1", "run2", "run3", "run4", "run5", "run6", "run7", "run8"]
         self.frame = 0
         self.sprite = Actor(self.image_idle[0], (self.x, self.y))
         self.speed = 4
@@ -42,9 +41,16 @@ class Hero:
             else:
                 self.x += self.speed * dx / dist
                 self.y += self.speed * dy / dist
+
         self.sprite.pos = (self.x, self.y)
-        self.frame = (self.frame + 1) % len(self.image_walk)
-        self.sprite.image = self.image_walk[self.frame] if self.moving else self.image_idle[0]
+        self.frame = (self.frame + 1) % 20
+
+        if self.moving:
+            walk_index = (self.frame // 10) % len(self.image_walk)
+            self.sprite.image = self.image_walk[walk_index]
+        else:
+            idle_index = (self.frame // 5) % len(self.image_idle)
+            self.sprite.image = self.image_idle[idle_index]
 
     def move(self, dx, dy):
         if self.moving:
@@ -129,7 +135,6 @@ class Enemy:
         self.move_target = (new_x * CELL_SIZE, new_y * CELL_SIZE)
         self.moving = True
 
-# === MENU ===
 buttons = [
     {"label": "Start Game", "x": 250, "y": 150, "w": 140, "h": 40, "action": "start"},
     {"label": "Toggle Sound", "x": 250, "y": 200, "w": 140, "h": 40, "action": "sound"},
