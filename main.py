@@ -70,8 +70,8 @@ class Enemy:
         self.grid_y = y
         self.x = x * CELL_SIZE
         self.y = y * CELL_SIZE
-        self.image_idle = ["enemy"]
-        self.image_walk = ["enemy", "enemy"]
+        self.image_idle = ["enemy1", "enemy2", "enemy3", "enemy4", "enemy5"]
+        self.image_walk = ["enemy1", "enemy2", "enemy3", "enemy4", "enemy5"]
         self.sprite = Actor(self.image_idle[0], (self.x, self.y))
         self.frame = 0
         self.move_target = (self.x, self.y)
@@ -142,7 +142,7 @@ buttons = [
 ]
 
 hero = Hero(2, 2)
-enemies = [Enemy(5, 3), Enemy(7, 5)]
+enemies = [Enemy(5, 3), Enemy(7, 5), Enemy(5, 3), Enemy(7, 5)]
 
 def draw():
     screen.clear() # type: ignore
