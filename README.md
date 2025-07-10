@@ -1,4 +1,4 @@
-# 🧱 Roguelike - Projeto de Teste para Tutores Python
+# 🧱 Roguelike - inimigos perseguem você
 
 Este é um pequeno jogo no estilo **roguelike**, desenvolvido com as bibliotecas (`pgzero`, `math`, `random`, e `pygame.Rect`).
 
