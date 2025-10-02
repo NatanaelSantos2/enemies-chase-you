@@ -1,8 +1,8 @@
-# 🧱 Roguelike - inimigos perseguem você
+#Roguelike - inimigos perseguem você
 
 Este é um pequeno jogo no estilo **roguelike**, desenvolvido com as bibliotecas (`pgzero`, `math`, `random`, e `pygame.Rect`).
 
-## 🎮 Funcionalidades
+##Funcionalidades
 
 - Menu principal com botões clicáveis:
   - Iniciar Jogo
@@ -16,13 +16,13 @@ Este é um pequeno jogo no estilo **roguelike**, desenvolvido com as bibliotecas
 - Movimento suave em grade (grid) com animação
 - Estrutura clara
 
-## 📦 Requisitos
+##Requisitos
 
 - Python 3.x
 - PgZero (instale com `pip install pgzero`)
 - PyGame (instale com `pip install pygame`)
 
-## ▶️ Como Rodar
+##Como Rodar
 Cole no CMD
 ```bash
 pgzrun main.py
